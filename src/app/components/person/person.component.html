@@ -1,0 +1,55 @@
+<form class="form" [formGroup]="formularioPersona" (ngSubmit)="RegistrarPersonas(formularioPersona)">
+    <label formControlName="nombre" id="nombre" name="nombre" for="fname">Nombre:</label><br>
+    <input type="text" required color="red" formControlName="nombre" id="nombre" name="nombre"><br>
+  
+    <label for="apellido" >Apellido:</label><br>
+    <input type="text" id="apellido" formControlName="apellidos" #apellido><br>
+  
+    <label for="edad" >Edad:</label><br>
+    <input type="number" id="edad" name="edad" formControlName="edad" required color="red" #edad><br>
+  
+    <label for="DNI">DNI:</label><br>
+    <input type="text" id="DNI" name="DNI" formControlName="DNI" required color="red" #DNI><br>
+  
+    <label for="cumple">Cumpleaños:</label><br>
+    <input type="date" id="cumple" name="cumple" formControlName="cumple" required color="red" #cumple><br>
+  
+    <label for="color">Color favorito:</label><br>
+    <input type="text" id="color" name="color" formControlName="color" required color="red" #color><br>
+  
+    <label for="sexo">Sexo:</label><br>
+    <mat-radio-group formControlName="sexo">
+      <mat-radio-button value="Femenino" id="sexoF">Femenino</mat-radio-button><br>
+      <mat-radio-button value="Masculino" id="sexoM">Masculino</mat-radio-button><br>
+      <mat-radio-button value="Otro" id="sexoO">Otro</mat-radio-button>
+    </mat-radio-group>
+    <br><br>
+    <button type="submit">Guardar</button>
+    
+  </form>
+  
+  <div *ngFor="let usuario of getArrayPersonas(); let i=index">
+    <ul>
+      <li>
+        {{i}} {{usuario | json}}
+        <button mat-raised-button color="primary" [class.selected]="usuario === formularioPersona" type="button"
+          (click)="onKeyUp(i,usuario)">Modificar</button>;
+  
+        <button mat-raised-button color="red" (click)="Eliminar(i)">Eliminar</button>
+        <br><br>
+      </li>
+    </ul>
+  </div>
+  
+  
+  
+  <!-- 
+  <pre>
+    {{formularioPersona.value | json}}
+  </pre>
+  
+  <pre>
+    {{formularioPersona.status}}
+  </pre> -->
+  
+  
